@@ -25,4 +25,7 @@ def index(request):
     ]
     notes = '\n'.join(notes_li)
 
-    return load_template('index.html').format(notes=notes).encode()
+    pagina = build_response(code=303, reason='See Other', headers='Location: /') if request.startswith('POST') else build_response()
+    pagina += load_template('index.html').format(notes=notes).encode()
+
+    return pagina

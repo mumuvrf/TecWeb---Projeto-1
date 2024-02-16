@@ -27,7 +27,7 @@ while True:
     if filepath.is_file():
         response = build_response() + read_file(filepath)
     elif route == '':
-        response = build_response()+index(request)
+        response = index(request)
     else:
         response = build_response()
     client_connection.sendall(response)
