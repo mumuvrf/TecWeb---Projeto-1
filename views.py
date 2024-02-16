@@ -1,4 +1,4 @@
-from utils import load_data, load_template
+from utils import load_data, load_template, build_response
 
 def index(request):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
@@ -14,15 +14,8 @@ def index(request):
         # requisição e devolve os parâmetros para desacoplar esta lógica.
         # Dica: use o método split da string e a função unquote_plus
         for chave_valor in corpo.split('&'):
-            chave, info_c = chave_valor.split('=')
-            info_palavras = info_c.split('+')
-            info = ''
-            for palavra in info_palavras:
-                if(info != ''):
-                    info += ' '
-            info += palavra
-            params[chave] = info
-            
+            print(chave_valor)
+
     # Cria uma lista de <li>'s para cada anotação
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
