@@ -10,6 +10,7 @@ def extract_route(request):
 
 def read_file(path):
     img = open(path, mode='rb')
+
     return img.read()
 
 def load_data(json_filename):
@@ -29,7 +30,14 @@ def load_template(template_filename):
 def build_response(body='', code=200, reason='OK', headers=''):
     if(code == 302): response = f'HTTP/1.1 {code} {reason}\n{headers}\n{body}\n'
     else: response = f'HTTP/1.1 {code} {reason}\n{headers}\n{body}'
+
     return response.encode()
 
 def add_note(dict):
+    data = load_data('notes.json')
+    data.append(dict)
+    string = json.dumps(data)
+    with open('data/notes.json', mode='w') as file:
+        file.write(string)
     pass
+
